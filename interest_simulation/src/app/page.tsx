@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [amount, setAmount] = useState<number | null>(null); // 現在金額
-  const [initialAmount, setInitialAmount] = useState<number | null>(null)// 初期金額
+  const [initialAmount, setInitialAmount] = useState<number | null>(null);// 初期金額
   const [interestRate, setInterestRate] = useState<number | null>(null); // 利息率
   const [year, setYear] = useState<number>(0); // 年数
   const [isModalOpen, setIsModalOpen] = useState(true); // モーダルの表示状態
@@ -12,8 +12,7 @@ export default function Home() {
   const handleIncrease = () => {
     if (amount !== null && interestRate !== null) {
       setAmount((prevAmount) => prevAmount! + prevAmount! * interestRate!);
-      setYear((prevYear) => (prevYear + 1) % 100); // 年数を1年増やす
-
+      setYear((prevYear) => (prevYear + 1)); // 年数を1年増やす
     }
   };
 
@@ -28,7 +27,16 @@ export default function Home() {
     setIsModalOpen(false);
   };
 
+  const initializeSettings = () => {
+    setInitialAmount(null);
+    setAmount(null);
+    setInterestRate(null);
+    setYear(0);
+    setIsModalOpen(true);
+  }
+
   if (isModalOpen) {
+
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
         <div className="bg-white p-8 rounded shadow-lg">
@@ -42,7 +50,7 @@ export default function Home() {
                 id="amount"
                 name="amount"
                 type="number"
-                step="0.01"
+                step="1"
                 className="w-full rounded border-gray-300 px-4 py-2"
                 required
               />
@@ -86,9 +94,9 @@ export default function Home() {
           <label htmlFor="interestRate" className="text-lg font-medium">
             初期金額:{" "}
             <span className="font-mono font-semibold">
-              ¥{initialAmount?.toFixed(2)}
+              ¥{initialAmount}
             </span>
-            　初期利息率:{" "}
+            　利息率:{" "}
             <span className="font-mono font-semibold">
               {interestRate ? `${(interestRate * 100)}%` : "未設定"}
             </span>
@@ -103,6 +111,12 @@ export default function Home() {
           onClick={handleIncrease}
         >
           １年経過
+        </button>
+        <button
+          className="bg-yellow-500 text-white px-6 py-3 text-lg font-medium hover:bg-yellow-600 transition"
+          onClick={initializeSettings}
+        >
+          設定変更
         </button>
       </main>
     </div>
