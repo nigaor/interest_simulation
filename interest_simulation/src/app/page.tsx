@@ -12,7 +12,7 @@ export default function Home() {
   const handleIncrease = () => {
     if (amount !== null && interestRate !== null) {
       setAmount((prevAmount) => prevAmount! + prevAmount! * interestRate!);
-      setYear((prevYear) => (prevYear + 1)); // 年数を1年増やす
+      setYear((prevYear) => (prevYear + 1)); // 年数を1年増やす 
     }
   };
 
