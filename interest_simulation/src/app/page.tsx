@@ -96,7 +96,7 @@ export default function Home() {
             <span className="font-mono font-semibold">
               ¥{initialAmount}
             </span>
-            　利息率:{" "}
+            利息率:{" "}
             <span className="font-mono font-semibold">
               {interestRate ? `${(interestRate * 100)}%` : "未設定"}
             </span>
