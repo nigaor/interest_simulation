@@ -100,7 +100,7 @@ export default function Home() {
             <span className="font-mono font-semibold">
               {interestRate ? `${(interestRate * 100)}%` : "未設定"}
             </span>
-            　年数:{" "}
+            　　年数:{" "}
             <span className="font-mono font-semibold">
               {year}年
             </span>
